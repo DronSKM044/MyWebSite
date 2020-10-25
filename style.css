@@ -6,7 +6,7 @@
 }
 @keyframes onBlur{
             0%{
-                filter: blur(10px);
+                filter: blur(0px);
             }
             100%{
                 filter: blur(0px);
@@ -15,16 +15,13 @@
 
         @keyframes onClip{
             0%{
-                clip-path: circle(10px at 50% 50%);
+                clip-path: circle(120px at 50% 100%);
             }
             50%{
-                clip-path: circle(80% at 100% 50%);
-            }
-            70%{
-                clip-path: circle(20% at 0% 50%);
+                clip-path: circle(300px at 50% 30%);
             }
             100%{
-                clip-path: circle(70% at 0% 0%);
+                clip-path: circle(1000% at 100% 100%);
             }
             
         }
@@ -39,11 +36,12 @@
     padding: 100px;
     background: url(img/graphic/starry-night.jpg),black;
     background-repeat: no-repeat;
-    background-size: 60%;
-    background-position: right;
-    filter: blur(10px);
-    clip-path: circle(200px at 0 100px);
-    animation: onClip 3s ease-in-out both,onBlur .9s 3s linear both;
+    background-size: cover;
+    /* background-size: 60%;
+    background-position: right; */
+    /* filter: blur(10px); */
+    clip-path: circle(120px at 50% 100%);
+    animation: onClip 3s ease-in-out both,onBlur .5s 2.5s linear both;
     /* animation: onBlur .9s linear both; */
 
 }
@@ -116,11 +114,11 @@ header a{
 }
 #toggle:before{
     top:7px;
-    border-top: 2px solid rgb(10, 10, 10);
+    border-top: 2px solid rgb(250, 249, 249);
 }
 #toggle:after{
     bottom:7px;
-    border-bottom: 2px solid rgb(15, 15, 15);
+    border-bottom: 2px solid rgb(255, 254, 254);
     
 }
 
@@ -138,6 +136,17 @@ section{
     width: 50%;
     align-self: left;
 }
+section.About:after{
+    content: "";
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    background-color: white;
+    bottom:0%;
+    left: 50%;
+    border: 1px solid white;
+    border-radius: 50%;
+}
 .content{
     width:80%;
     height: 100%;
@@ -145,6 +154,8 @@ section{
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
+    border-left: 1px solid;
+    border-bottom: 1px solid;
 }
 .content p,.content a{
     margin-top: 10px;
@@ -153,6 +164,28 @@ section{
     display: inline-block;
     padding: 5px;
     color: black;
+    align-self: flex-end;
     /* border: 2px solid black; */
     background: #ffff;
+}
+#nav{
+    position: absolute;
+    top:0;
+    right: 0;
+    background-color:rgba(243, 17, 168,.2);
+    height: 100%;
+    padding: 10px;
+
+}
+#nav ul{
+    list-style: none;
+}
+#nav ul li{
+    font-size: 2em;
+    margin-top: 10px;
+    border-bottom: 10px solid rgba(231, 227, 202, 0.918);
+    transition: .7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+#nav ul li:hover{
+    border-bottom: 10px solid rgba(90, 63, 209, 0.9);
 }
