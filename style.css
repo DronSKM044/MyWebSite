@@ -1,0 +1,158 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+@keyframes onBlur{
+            0%{
+                filter: blur(10px);
+            }
+            100%{
+                filter: blur(0px);
+            }
+        }
+
+        @keyframes onClip{
+            0%{
+                clip-path: circle(10px at 50% 50%);
+            }
+            50%{
+                clip-path: circle(80% at 100% 50%);
+            }
+            70%{
+                clip-path: circle(20% at 0% 50%);
+            }
+            100%{
+                clip-path: circle(70% at 0% 0%);
+            }
+            
+        }
+       
+
+.container {
+    background-color: #0D0D0D;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 100px;
+    background: url(img/graphic/starry-night.jpg),black;
+    background-repeat: no-repeat;
+    background-size: 60%;
+    background-position: right;
+    filter: blur(10px);
+    clip-path: circle(200px at 0 100px);
+    animation: onClip 3s ease-in-out both,onBlur .9s 3s linear both;
+    /* animation: onBlur .9s linear both; */
+
+}
+.bright{
+    position: absolute;
+    top:55%;
+    right: 23.5%;
+    height: 350px;
+    width: 300px;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, .9);
+    filter: blur(100px) brightness(1);
+}
+.bright2 {
+    position: absolute;
+    top:55%;
+    right: 27%;
+    height: 100px;
+    width: 100px; 
+    filter: blur(25px);
+
+}
+.bright2:after{
+    content: "";
+    display: block;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 40px;
+    width: 40px;
+    background: rgb(231, 227, 202);
+    filter: blur(15px) brightness(1);
+}
+
+
+
+
+body,a {
+    color: white;
+    text-decoration: none;
+}
+
+header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    /* background: lightblue; */
+    /* padding: 20px; */
+}
+header a{
+    font-size: 1.5em;
+}
+#toggle{
+    /* background: violet; */
+    position: relative;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    transition: .5s ease;
+    /* background-color: white; */
+}
+#toggle:before,#toggle:after{
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    transition: .5s ease;
+}
+#toggle:before{
+    top:7px;
+    border-top: 2px solid rgb(10, 10, 10);
+}
+#toggle:after{
+    bottom:7px;
+    border-bottom: 2px solid rgb(15, 15, 15);
+    
+}
+
+#toggle.active:before{
+    transform-origin:top center ;
+    transform: rotate(-45deg);
+}
+#toggle.active:after{
+    transform: rotate(45deg);
+}
+
+
+
+section{
+    width: 50%;
+    align-self: left;
+}
+.content{
+    width:80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.content p,.content a{
+    margin-top: 10px;
+}
+.content a{
+    display: inline-block;
+    padding: 5px;
+    color: black;
+    /* border: 2px solid black; */
+    background: #ffff;
+}
