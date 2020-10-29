@@ -19,3 +19,9 @@ for(let i=0; i<10; i++){
          cloud.classList.add("clouds");
          container.appendChild(cloud);
  }
+
+
+
+ const canvas =document.getElementById("canvas");
+ if(canvas.getContext){
+ const ctx = canvas.getContext("2d");} 
