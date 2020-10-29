@@ -55,6 +55,18 @@
         opacity: .2;
     }
 }
+
+@keyframes cloudsRun {
+
+    0%{
+      left:-150px  
+    }
+    100%{
+        left:150%;
+
+    }
+
+}
         
        
 .preload{
@@ -119,6 +131,16 @@ position: absolute;
 background: url(img/graphic/moon.png) no-repeat center;
 background-size: cover;
 animation: moonMove 1s 3s linear both;
+}
+.clouds{
+width: 150px;
+height: 150px;
+top:50px;
+left:400px;
+position: absolute;
+background: url(img/graphic/cloud_1.png) no-repeat center;
+background-size: contain;
+/* animation: cloudsRun 50s linear infinite; */
 }
 .bright{
     position: absolute;
