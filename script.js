@@ -1,3 +1,4 @@
+"use strict";
 const change = document.getElementById("toggle");
 function toggle(){
 
@@ -22,92 +23,93 @@ const container = document.querySelector('.container');
 
 
 
-
-
-
-
-let property = {
-        opacity:1,
-        radius: Math.floor(Math.random()*10), 
-        step:0,
-        particlesCount:50,
-}
-let particlesArray = [];
-
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
-canvas.width = innerWidth;
-canvas.height =innerHeight;
-
-class Particle{
-        constructor(x,y,radius,opacity){
-                this.x = x;
-                this.y = y;
-                this.radius = radius;
-                this.opacity =opacity =Math.floor( Math.random()*10)/10
-                
+(function(){
+        const canvas = document.getElementById("canvas");
+        canvas.width=innerWidth;
+        canvas.height = innerHeight;
+        const ctx = canvas.getContext("2d");
+       const particles=[];
+       const  properties={
+                particleCount:50,
+                particleMaxVelocity:0.1,
+                color:{r:1, g:1,b:1,a:1},
+                loopCount:0,
+                img:new Image(10,10)
         }
-        draw(){
-                ctx.beginPath();       
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
-                ctx.closePath();
-                ctx.fillStyle = `rgba(255,255,255,${this.opacity})`
-                ctx.fill()       
+        class Particle{
+                constructor(){
+                        this.x = Math.random()*canvas.width;
+                        this.y = Math.random()*canvas.height;
+                        this.radius = (Math.random()*(3.2-1))+1;
+                        //speed
+                        this.velocityX = Math.random()*(properties.particleMaxVelocity*2)-properties.particleMaxVelocity;
+                        this.velocityY = Math.random()*(properties.particleMaxVelocity*2)-properties.particleMaxVelocity;
+
+
+                }
+                position(){
+                        this.x+=this.velocityX;
+                        this.y+=this.velocityY;
+                }
+                color(){
+
+                        properties.color.r= Math.random()*(255+1)-1;
+                        properties.color.g= Math.random()*(255+1)-1;
+                        properties.color.b= Math.random()*(255+1)-1;
+                        properties.color.a= Math.random()*(0.8+0.1)-0.1;
+                        console.log()
+
+                }
+                draw(){
+
+                        // properties.img.src = 'https://mdn.mozillademos.org/files/5397/rhino.jpg';
+                        // ctx.drawImage(properties.img,canvas.width/2,canvas.height/2)
+
+                        ctx.beginPath();
+                        ctx.arc(this.x,this.y, this.radius , 0, Math.PI*2);
+                        ctx.closePath();
+                        ctx.fillStyle=`rgba(${properties.color.r},${properties.color.g},${properties.color.b},${properties.color.a})`
+                        ctx.fill();
+                }
         }
-        updateOpacity(){
-              this.opacity < 0.9 ? this.opacity +=0.1 : this.opacity = 0.1; 
-        // return this.opacity = 0
-}
-        changePosition(){
-                this.x = this.x+2;
-                this.y = this.y+2;
-                this.radius= this.radius-0.1;
+
+        function clearCanvas(){
+                //Czyscimy canvas
+                ctx.clearRect(0,0,canvas.width,canvas.height)
+        }
+        function reDrawParticles(){
+                //dla każdej instancii wywolujemy metody 
+                for (const i in particles) {
+                        particles[i].position();
+                        particles[i].color();
+                        particles[i].draw();
+                }
         }
 
-
-
-}
-
-
-for(let i= 0; i<=property.particlesCount; i++){
-        const particle = new Particle(innerWidth - Math.floor(Math.random()*1000),innerHeight - Math.floor(Math.random()*1000), 2);
-        
-        particlesArray.push(particle);   
-}
-function animate(){
-        for(let i in particlesArray){
-                // particlesArray[i].clear()
-               particlesArray[i].changePosition();
-               particlesArray[i].draw();
+        function stops(){
+                //stop frame
+                properties.loopCount++;
         }
-        
- setTimeout(animate,100)
 
-}
-function starVisible(){
-for(let i in particlesArray){
-        particlesArray[i].draw();
-}
-animate()
-console.log(particlesArray);
-}
-setTimeout(starVisible,2000)
+        function loop(){
+                stops();
+                if(
+                        properties.loopCount%10==0
+                ){
+                clearCanvas();
+                reDrawParticles();
+                properties.loopCount=0;
+        }
+        requestAnimationFrame(loop);
+        }
 
+       function init(){
+               for(let i=0; i<properties.particleCount; i++){
+                       particles.push(new Particle);
+               }
+              loop();
+       }  
+      init();
 
-
-
-
-// function loop(){
-//         particle.draw()
-//         if (property.step <1){
-//         console.log("ok");
-//         requestAnimationFrame(loop);
-//         property.step++;
-// }
-//         else 
-//         console.log(property.step);
-
-// }
-
-
+}())
 
