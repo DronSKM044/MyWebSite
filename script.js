@@ -1,9 +1,22 @@
 "use strict";
-const change = document.getElementById("toggle");
-function toggle(){
+const btn_dropMenu = document.getElementById("btn_dropMenu");
+const navMenu = document.querySelector(".nav_menu");
+btn_dropMenu.addEventListener('click', ()=>{
+        btn_dropMenu.classList.toggle('active');
+        navMenu.classList.toggle('active');
+})
 
-        change.classList.toggle('active');
-}
+
+
+
+
+
+
+
+
+
+
+
 
 let clouds=[];
 let vertical = 0;
@@ -31,7 +44,7 @@ const container = document.querySelector('.container');
        const particles=[];
        const  properties={
                 particleCount:50,
-                particleMaxVelocity:0.1,
+                particleMaxVelocity:0.2,
                 color:{r:1, g:1,b:1,a:1},
                 loopCount:0,
                 img:new Image(10,10)
