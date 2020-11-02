@@ -14,12 +14,18 @@
         <p>You are ready go to the star with me! </p>
     </div>
     <div class="container">
-        <div class="moon"></div>
-        <div class="clouds"></div>
+        <div class="planet moon"><a href='#' class="children">About Me</a> </div>
+        <div class="planet mars"></div>
+        <div class="planet upiter"></div>
+        <div class="planet saturn"></div>
+
+        <!-- <div class="clouds"></div> -->
         <canvas id="canvas"></canvas>
     <header>
-        <a href="#" class="logo" id="logo"> Dron<span>SKM</span> </a> 
-        <div id="toggle" onclick="toggle()"></div>
+        <h1>
+            <a href="#" class="logo" id="logo"> Dron<span class="animate_SKM">SKM</span> </a> 
+        </h1>
+        <div id="btn_dropMenu"></div>
     </header>
         <section class="About">
            <div class ="content">
@@ -32,7 +38,7 @@
             <aside>
             </aside>
         </section>
-        <nav id="nav"> 
+        <nav class="nav_menu"> 
             <ul>
                 <li><a href ="#logo">About Me</a></li>
                 <li><a href="#">My work</a></li>
