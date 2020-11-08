@@ -135,7 +135,7 @@ left:400px;
 background: url(img/graphic/earth.png) no-repeat center;
 background-size: cover;
 animation: moonMove 1s 3s linear both;
-transition:  .2s linear;
+transition:  .1s linear;
 border: 0px solid black;
 border-radius: 50%;
 /* transform:translate3D(0px,0px,0px) scale(1); */
@@ -423,4 +423,12 @@ section.About:after{
     width: 100%;
     background: rgba(25, 13, 20, 0.8);
     transition: .3s linear;
+}
+
+
+.onMars{
+    width: 100%;
+    height: 100vh;
+    background: url(img/graphic/onTheMars.jpg) no-repeat;
+    background-size: cover;
 }
