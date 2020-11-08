@@ -36,7 +36,7 @@ const container = document.querySelector('.container');
 
 
 
-(function(){
+function Stars(){
         const canvas = document.getElementById("canvas");
         canvas.width=innerWidth;
         canvas.height = innerHeight;
@@ -66,11 +66,10 @@ const container = document.querySelector('.container');
                 }
                 color(){
 
-                        properties.color.r= Math.random()*(255+1)-1;
-                        properties.color.g= Math.random()*(255+1)-1;
-                        properties.color.b= Math.random()*(255+1)-1;
-                        properties.color.a= Math.random()*(0.8+0.1)-0.1;
-                        console.log()
+                        properties.color.r= Math.random()*(255-250)+250;
+                        properties.color.g= Math.random()*(255-250)+250;
+                        properties.color.b= Math.random()*(255-250)+250;
+                        properties.color.a= Math.random()*(0.8-0.1)+0.1;
 
                 }
                 draw(){
@@ -124,5 +123,30 @@ const container = document.querySelector('.container');
        }  
       init();
 
-}())
+}    
+setTimeout(Stars,6000); 
+
+
+(function(){
+        const earth =document.querySelector('.earth');
+        const planets = [...document.querySelectorAll('.planet')]
+         let posX; 
+         let posY;
+         let x;
+         let y;
+         document.addEventListener('mousemove',(e)=>{
+                 
+                 console.log(earth)
+                planets.forEach( (pl, i)=>{
+                 posX = earth.offsetLeft;
+                 posY = earth.offsetTop;
+                 x =  e.clientX/100;
+                 y =  e.clientY/100;
+                 pl.style.transform = `translate(${x}px, ${y}px)`     
+                 console.log(earth + " ( " + x + " , " + y + " )" )
+                })
+        })
+
+
+}() )
 
