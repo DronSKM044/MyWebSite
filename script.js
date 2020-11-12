@@ -129,21 +129,43 @@ setTimeout(Stars,6000);
 
 (function(){
         const earth =document.querySelector('.earth');
+        const container = document.querySelector('.container');
+        console.log(container);
+        const canvas= document.querySelector("canvas");
         const planets = [...document.querySelectorAll('.planet')]
          let posX; 
          let posY;
          let x;
          let y;
+         console.log(planets)
          document.addEventListener('mousemove',(e)=>{
-                 
-                 console.log(earth)
-                planets.forEach( (pl, i)=>{
-                 posX = earth.offsetLeft;
-                 posY = earth.offsetTop;
-                 x =  e.clientX/100;
-                 y =  e.clientY/100;
-                 pl.style.transform = `translate(${x}px, ${y}px)`     
-                 console.log(earth + " ( " + x + " , " + y + " )" )
+                 planets.forEach( (pl, i)=>{
+                         posX = earth.offsetLeft;
+                         posY = earth.offsetTop;
+                         if(i ==  0){
+                                 x =  e.clientX/50;
+                                 y =  e.clientY/50;
+                                 pl.style.transform = `translate(${x}px, ${y}px)`;
+                                }
+                        if(i==1){
+                                x =  e.clientX/30;
+                                y =  e.clientY/30;
+                                pl.style.transform = `translate(${x}px, ${y}px)`;
+                }
+                        if(i==2){
+                                x =  e.clientX/70;
+                                y =  e.clientY/70;
+                                pl.style.transform = `translate(${x}px, ${y}px)`;
+                }
+                        if(i==3){
+                                x =  e.clientX/90;
+                                y =  e.clientY/90;
+                                pl.style.transform = `translate(${x}px, ${y}px)`;
+                }
+                         else{  
+                                x =  e.clientX/300;
+                                y =  e.clientY/300;
+                                canvas.style.transform = `translate(${x}px, ${y}px)`;}
                 })
         })
 
