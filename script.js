@@ -9,15 +9,6 @@ btn_dropMenu.addEventListener('click', ()=>{
 
 
 
-
-
-
-
-
-
-
-
-
 let clouds=[];
 let vertical = 0;
 let horizontal = -200;
@@ -129,15 +120,33 @@ setTimeout(Stars,6000);
 
 (function(){
         const earth =document.querySelector('.earth');
-        const container = document.querySelector('.container');
-        console.log(container);
         const canvas= document.querySelector("canvas");
+        const frames = [...document.querySelectorAll('.frame')];
         const planets = [...document.querySelectorAll('.planet')]
          let posX; 
          let posY;
          let x;
          let y;
-         console.log(planets)
+
+        const link = document.querySelector('.earth>a');
+        const text = [...link.textContent];
+        const char='!<>-_\\/[]{}—=+*^?#________';
+        let secondIndex=0;
+        let index=0;
+
+        function letterRoll(str , str2){
+            index = Math.floor(Math.random()*str.length);
+            secondIndex = Math.floor(Math.random()*str2.length);
+            let secondLetter = str2[secondIndex];
+            str.splice(index,1,secondLetter); 
+            link.textContent = str;                           
+            console.log(str);
+        }
+
+        setInterval(letterRoll(text,char))
+
+        
+
          document.addEventListener('mousemove',(e)=>{
                  planets.forEach( (pl, i)=>{
                          posX = earth.offsetLeft;
@@ -168,7 +177,21 @@ setTimeout(Stars,6000);
                                 canvas.style.transform = `translate(${x}px, ${y}px)`;}
                 })
         })
+        
+       const changeFrame = (index)=>{
+               frames[index].classList.toggle('activeFrame')
 
+       } 
+        planets.forEach((planet, index) => {
+          planet.addEventListener('click', function(){
+          this.classList.add('trans');
+          this.style.transform = `scale(${60}) translateX(${-50}px)`;
+          this.style.opacity = 0.1;
+
+          changeFrame(index);
+          
+        }) 
+        })
 
 }() )
 
