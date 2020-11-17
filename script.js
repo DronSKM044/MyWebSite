@@ -128,25 +128,27 @@ setTimeout(Stars,6000);
          let x;
          let y;
 
+      function scrambler(){
         const link = document.querySelector('.earth>a');
         const text = [...link.textContent];
         const char='!<>-_\\/[]{}—=+*^?#________';
         let secondIndex=0;
         let index=0;
 
-        function letterRoll(str , str2){
-            index = Math.floor(Math.random()*str.length);
-            secondIndex = Math.floor(Math.random()*str2.length);
-            let secondLetter = str2[secondIndex];
-            str.splice(index,1,secondLetter); 
-            link.textContent = str;                           
-            console.log(str);
-        }
+        setTimeout(function letterRoll(){
+                index = Math.floor(Math.random()*text.length);
+                secondIndex = Math.floor(Math.random()*char.length);
+                let secondLetter = char[secondIndex];
+                text.splice(index,1,secondLetter);   
+                link.textContent = text;
+                console.log(text);
+                setTimeout(letterRoll,100)                    
+        }, 1000)
 
-        setInterval(letterRoll(text,char))
+      }
 
-        
 
+      
          document.addEventListener('mousemove',(e)=>{
                  planets.forEach( (pl, i)=>{
                          posX = earth.offsetLeft;
