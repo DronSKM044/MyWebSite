@@ -129,32 +129,28 @@ setTimeout(Stars,6000);
          let y;
 
       function scrambler(){
+              
+        
         const link = document.querySelector('.earth>a');
         const text = [...link.textContent];
         const char='aboutme';
         const alfabet = 'abcdefghijklmnopqrstuvwxyz! <>-_ \\/[]{}—=+*^?#________';
-        let secondIndex=0;
         let index=0;
         let thirdIndex =0;
         let min = 0;
         let i=0;
+
         setTimeout(function letterRoll(){
                 if(text[i] == char[i]){
                         min++;
                         i++;
                 }
-                else if(i>char.length) return
-                const txt = link.textContent;
+                else if(i == char.length) return 
+
                 index = Math.floor(Math.random()*(text.length-min))+min;
-                console.log(index)
-                secondIndex = Math.floor(Math.random()*char.length);
                 thirdIndex  = Math.floor(Math.random()*alfabet.length);
-                let secondLetter = char[secondIndex];
-                let alfChar  = alfabet[thirdIndex];
-                // text.splice(index,1,secondLetter);
-                text.splice(index,1,alfChar);   
+                if(index < char.length) text.splice(index,1,alfabet[thirdIndex]);   
                 link.textContent = text.join(' ');
-                console.log(text);
                 setTimeout(letterRoll,1)                    
         }, 1000)
 
