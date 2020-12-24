@@ -10,25 +10,32 @@
 
 <body>
 
-    <div class="preload">
+<section class="preload">
         <p>You are ready go to the star with me! </p>
-    </div>
-    <section class="container frame">
+</section>
+<section class="onEarth">
         <canvas id="canvas"></canvas>
-        <div class="planet earth"><a href='#' class="children">About Me</a> </div>
-        <div class="planet mars"><a href='#' class="children">My Skills</a> </div>
+        <div class="planet earth"><a href='#' class="children">AboutMe</a> </div>
         
-        <div class="planet moon"><a href='#' class="children">My Work</a> </div>
+        <a href='#skills' class="children">
+            <div class="planet mars">My Skills</div>
+        </a>
+        
+        <a href='#projects' class="children">
+            <div class="planet moon">My Work </div> 
+        </a>
        
-        <div class="planet saturn"><a href='#' class="children">Contacts</a> </div>
+        <a href='#' class="children">
+            <div class="planet saturn">Contacts </div>
+        </a> 
         
         <!-- <div class="clouds"></div> -->
-    <header>
-        <h1>
+        <header>
+         <h1>
             <a href="#" class="logo" id="logo"> Dron<span class="animate_SKM">SKM</span> </a> 
-        </h1>
+         </h1>
         <div id="btn_dropMenu"></div>
-    </header>
+        </header>
     <div class="main">
         
         <section class="about">
@@ -39,14 +46,12 @@
             <!-- <div class="bright"></div>
                 <div class="bright bright2"></div> -->
             </div>
-            <aside>
-            </aside>
         </section>
         <nav class="nav_menu"> 
             <ul>
                 <li><a href ="#logo">About Me</a></li>
-                <li><a href="#">My work</a></li>
-                <li><a href="#">My Skills</a></li>
+                <li><a href="#projects">My work</a></li>
+                <li><a href="#skills">My Skills</a></li>
                 <li><a href="#">Contacts</a></li>
             </ul>    
             
@@ -54,10 +59,10 @@
     </div>
     
 </section>
-<section class="onMars frame">
+<section class="onMars" id="skills">
     <h2>Skills</h2>
 </section>
-<section class="onMoon frame">
+<section class="onMoon" id="projects">
     <h2>Welcome to my projects</h2>
     <div class="gallery">
         <div class="card">

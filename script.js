@@ -6,6 +6,13 @@ btn_dropMenu.addEventListener('click', ()=>{
         navMenu.classList.toggle('active');
 })
 
+const a = [...document.querySelectorAll("a.children")];
+console.log(a[1])
+a[1].addEventListener('click', (e)=>{
+        e.preventDefault();
+        setTimeout(window.location="http://127.0.0.1:5500/Projects/MyWebSite/index.html#skills",2000); 
+})
+
 
 
 
@@ -13,7 +20,7 @@ let clouds=[];
 let vertical = 0;
 let horizontal = -200;
 let moveX =0;
-const container = document.querySelector('.container');
+const container = document.querySelector('.onEarth');
 // for(let i=0; i<10; i++){
 //         let cloud = document.createElement("div");
 //         vertical=vertical+Math.floor(Math.random() * 100);
@@ -118,6 +125,23 @@ function Stars(){
 setTimeout(Stars,6000); 
 
 
+ class Scrambler {
+         constructor(text){
+                this.text = text;
+         }
+         getObject(){
+                 document.addEventListener('click',(e)=>{
+                      return   this.text =  e.target.textContent;
+                 })
+         }
+         printObject(){
+                 console.log(this.text)
+         }
+ }
+
+
+
+
 (function(){
         const earth =document.querySelector('.earth');
         const canvas= document.querySelector("canvas");
@@ -127,6 +151,8 @@ setTimeout(Stars,6000);
          let posY;
          let x;
          let y;
+
+        const newScrambler = new Scrambler();
 
       function scrambler(){
               

@@ -80,8 +80,8 @@
 
 
 
-.container {
-    position: absolute;
+.onEarth {
+    position: relative;
     background-color: #0D0D0D;
     height: 100vh;
     display: flex;
@@ -91,17 +91,13 @@
     background: url(img/graphic/sky.jpg),black;
     background-repeat: no-repeat;
     background-position: bottom;
-    /* background-size: 60%;
-    background-position: right; */
-    /* filter: blur(10px); */
     transition: .2s ease-in;
     clip-path: circle(120px at 50% 100%);
     animation: onClip 3s ease-in-out both,onBlur 3s  linear both;
-    /* animation: onBlur .9s linear both; */
     overflow: hidden;
 
 }
-.container:before{
+.onEarth:before{
     content: "";
     width: 100%;
     height: 100%;
@@ -112,7 +108,7 @@
     opacity: 0; 
     animation: starVisible .5s 3s ease-in-out both; 
 }
-.container:after {
+.onEarth:after {
     content: "";
     width: 100%;
     height: 150px;
@@ -392,16 +388,21 @@ section.about:after{
     position: absolute;
     top:0;
     left: 0;
-    }
+}
+.onMars{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url(img/graphic/onTheMars.jpg) no-repeat;
+    background-size: cover;
+}
 
 .onMoon{
-    position: absolute;
+    position: relative;
     width: 100%;
     height: 100vh;
     background: url(img/graphic/onTheMoon.jpg) center no-repeat;
     background-size: cover;
-    z-index: -1;
-    opacity: 0;
 }
 
 .gallery{
@@ -456,15 +457,7 @@ section.about:after{
 }
 
 
-.onMars{
-    position: absolute;
-    width: 100%;
-    height: 100vh;
-    background: url(img/graphic/onTheMars.jpg) no-repeat;
-    background-size: cover;
-    z-index: -1;
-    opacity: 0;
-}
+
 section.activeFrame{
     z-index: 99999;
     animation: frameVisible 1s 2s ease-in both;
