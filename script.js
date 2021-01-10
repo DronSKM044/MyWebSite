@@ -124,18 +124,6 @@ function Stars() {
 }
 setTimeout(Stars, 6000);
 
-class Scrambler {
-  constructor() {}
-  getObject() {
-    document.addEventListener("click", (e) => {
-      return (this.text = e.target.textContent);
-    });
-  }
-  printObject() {
-    console.log(this.text);
-  }
-}
-
 (function () {
   const earth = document.querySelector(".earth");
   const canvas = document.querySelector("canvas");
@@ -145,8 +133,6 @@ class Scrambler {
   let posY;
   let x;
   let y;
-
-  const newScrambler = new Scrambler();
 
   planetNavigation();
 
@@ -183,10 +169,6 @@ class Scrambler {
     } else return;
   });
 
-  //        const changeFrame = (index)=>{
-  //                frames[index].classList.toggle('activeFrame')
-
-  //        }
   planets.forEach((planet, index) => {
     planet.addEventListener("click", function () {
       this.classList.add("trans");
@@ -196,31 +178,31 @@ class Scrambler {
   });
 })();
 
-function scrambler() {
-  const link = document.querySelector(".earth>a");
-  const text = [...link.textContent];
-  const char = "aboutme";
-  const alfabet = "abcdefghijklmnopqrstuvwxyz! <>-_ \\/[]{}—=+*^?#________";
-  let index = 0;
-  let thirdIndex = 0;
-  let min = 0;
-  let i = 0;
+// function scrambler() {
+//   const link = document.querySelector(".earth>a");
+//   const text = [...link.textContent];
+//   const char = "aboutme";
+//   const alfabet = "abcdefghijklmnopqrstuvwxyz! <>-_ \\/[]{}—=+*^?#________";
+//   let index = 0;
+//   let thirdIndex = 0;
+//   let min = 0;
+//   let i = 0;
 
-  setTimeout(function letterRoll() {
-    if (text[i] == char[i]) {
-      min++;
-      i++;
-    } else if (i == char.length) return;
+//   setTimeout(function letterRoll() {
+//     if (text[i] == char[i]) {
+//       min++;
+//       i++;
+//     } else if (i == char.length) return;
 
-    index = Math.floor(Math.random() * (text.length - min)) + min;
-    thirdIndex = Math.floor(Math.random() * alfabet.length);
-    if (index < char.length) text.splice(index, 1, alfabet[thirdIndex]);
-    link.textContent = text.join(" ");
-    setTimeout(letterRoll, 1);
-  }, 1000);
-}
+//     index = Math.floor(Math.random() * (text.length - min)) + min;
+//     thirdIndex = Math.floor(Math.random() * alfabet.length);
+//     if (index < char.length) text.splice(index, 1, alfabet[thirdIndex]);
+//     link.textContent = text.join(" ");
+//     setTimeout(letterRoll, 1);
+//   }, 1000);
+// }
 
-scrambler();
+// scrambler();
 
 const data = {
   planets: [...document.querySelectorAll(".planet")],
@@ -229,38 +211,23 @@ const data = {
 class Scrambl {
   constructor({ planets }) {
     this.planets = planets;
+    this.arr = [];
+  }
+
+  scrambler(text) {
+    const alfabet = "abcdefghijklmnopqrstuvwxyz! <>-_ \\/[]{}—=+*^?#________";
+    let randomChar = alfabet[Math.floor(Math.random() * alfabet.length)];
+    this.text = text;
+    this.arr.push(randomChar);
+    this.planets[2].innerHTML = this.arr.join(" ");
   }
 
   getPlanets() {
     this.planets.forEach((item) => {
-      item.addEventListener("click", (e) => {
-        console.log(e.target);
+      item.addEventListener("mouseover", (e) => {
+        this.scrambler(e.target.textContent);
       });
     });
-  }
-
-  scrambler() {
-    const link = document.querySelector(".earth>a");
-    const text = [...link.textContent];
-    const char = "aboutme";
-    const alfabet = "abcdefghijklmnopqrstuvwxyz! <>-_ \\/[]{}—=+*^?#________";
-    let index = 0;
-    let thirdIndex = 0;
-    let min = 0;
-    let i = 0;
-
-    setTimeout(function letterRoll() {
-      if (text[i] == char[i]) {
-        min++;
-        i++;
-      } else if (i == char.length) return;
-
-      index = Math.floor(Math.random() * (text.length - min)) + min;
-      thirdIndex = Math.floor(Math.random() * alfabet.length);
-      if (index < char.length) text.splice(index, 1, alfabet[thirdIndex]);
-      link.textContent = text.join(" ");
-      setTimeout(letterRoll, 1);
-    }, 1000);
   }
 }
 
