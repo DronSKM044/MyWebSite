@@ -206,30 +206,25 @@ setTimeout(Stars, 6000);
 
 const data = {
   planets: [...document.querySelectorAll(".planet")],
+  alfabet: "abcdefghijklmnopqrstuvwxyz! <>-_ \\/[]{}—=+*^?#________",
+  intervalID: 0,
+  arr: [],
 };
 
-class Scrambl {
-  constructor({ planets }) {
-    this.planets = planets;
-    this.arr = [];
-  }
-
-  scrambler(text) {
-    const alfabet = "abcdefghijklmnopqrstuvwxyz! <>-_ \\/[]{}—=+*^?#________";
-    let randomChar = alfabet[Math.floor(Math.random() * alfabet.length)];
-    this.text = text;
-    this.arr.push(randomChar);
-    this.planets[2].innerHTML = this.arr.join(" ");
-  }
-
-  getPlanets() {
-    this.planets.forEach((item) => {
-      item.addEventListener("mouseover", (e) => {
-        this.scrambler(e.target.textContent);
-      });
-    });
-  }
+function textScrambler(item) {
+  data.arr.push(data.alfabet[Math.floor(Math.random() * data.alfabet.length)]);
+  data.planets[item].innerHTML = data.arr.join("");
 }
 
-const planets = new Scrambl(data);
-planets.getPlanets();
+data.planets.forEach((item, index) => {
+  item.addEventListener("mouseover", (e) => {
+    clearInterval(data.intervalID);
+    let arr = [...e.target.textContent];
+
+    data.arr = [];
+    data.intervalID = setInterval(() => textScrambler(index), 500);
+  });
+  item.addEventListener("mouseout", () => {
+    clearInterval(data.intervalID);
+  });
+});
