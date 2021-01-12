@@ -212,19 +212,22 @@ const data = {
 };
 
 function textScrambler(item) {
+  // realizovać logikę zmiany liter dla tej funkcji i w prszypadku opuszczenia obiektu myszką zamienić na odpowidnie słowa
   data.arr.push(data.alfabet[Math.floor(Math.random() * data.alfabet.length)]);
   data.planets[item].innerHTML = data.arr.join("");
 }
 
 data.planets.forEach((item, index) => {
   item.addEventListener("mouseover", (e) => {
-    clearInterval(data.intervalID);
-    let arr = [...e.target.textContent];
+    clearInterval(data.intervalID); // wyczyscamy interval przy każdym nasunięcią myszki na obiekt
+
+    // let arr = [...e.target.textContent];
 
     data.arr = [];
     data.intervalID = setInterval(() => textScrambler(index), 500);
   });
   item.addEventListener("mouseout", () => {
+    //-- wyczyscamy interval przy każdym opuszczeniu myszki z obiektu
     clearInterval(data.intervalID);
   });
 });
