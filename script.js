@@ -178,56 +178,42 @@ setTimeout(Stars, 6000);
   });
 })();
 
-// function scrambler() {
-//   const link = document.querySelector(".earth>a");
-//   const text = [...link.textContent];
-//   const char = "aboutme";
-//   const alfabet = "abcdefghijklmnopqrstuvwxyz! <>-_ \\/[]{}—=+*^?#________";
-//   let index = 0;
-//   let thirdIndex = 0;
-//   let min = 0;
-//   let i = 0;
-
-//   setTimeout(function letterRoll() {
-//     if (text[i] == char[i]) {
-//       min++;
-//       i++;
-//     } else if (i == char.length) return;
-
-//     index = Math.floor(Math.random() * (text.length - min)) + min;
-//     thirdIndex = Math.floor(Math.random() * alfabet.length);
-//     if (index < char.length) text.splice(index, 1, alfabet[thirdIndex]);
-//     link.textContent = text.join(" ");
-//     setTimeout(letterRoll, 1);
-//   }, 1000);
-// }
-
-// scrambler();
-
 const data = {
   planets: [...document.querySelectorAll(".planet")],
   alfabet: "abcdefghijklmnopqrstuvwxyz! <>-_ \\/[]{}—=+*^?#________",
   intervalID: 0,
   arr: [],
+  savedText: [],
+  increaseIndex: 0,
 };
 
-function textScrambler(item) {
+data.planets.forEach((planetText) => {
+  data.savedText.push(planetText.textContent);
+});
+
+function textScrambler(item, index) {
   // realizovać logikę zmiany liter dla tej funkcji i w prszypadku opuszczenia obiektu myszką zamienić na odpowidnie słowa
-  data.arr.push(data.alfabet[Math.floor(Math.random() * data.alfabet.length)]);
-  data.planets[item].innerHTML = data.arr.join("");
+  let compareChar =
+    data.alfabet[Math.floor(Math.random() * data.alfabet.length)];
+  data.arr.splice(data.increaseIndex, data.increaseIndex, compareChar);
+  if (data.savedText[index][data.increaseIndex].toLowerCase() == compareChar) {
+    data.increaseIndex++;
+  }
+
+  data.planets[index].innerHTML = data.arr.join("");
 }
 
 data.planets.forEach((item, index) => {
   item.addEventListener("mouseover", (e) => {
     clearInterval(data.intervalID); // wyczyscamy interval przy każdym nasunięcią myszki na obiekt
-
-    // let arr = [...e.target.textContent];
-
     data.arr = [];
-    data.intervalID = setInterval(() => textScrambler(index), 500);
+
+    data.intervalID = setInterval(() => textScrambler(item, index), 20);
   });
   item.addEventListener("mouseout", () => {
     //-- wyczyscamy interval przy każdym opuszczeniu myszki z obiektu
+    data.planets[index].innerHTML = data.savedText[index];
+    data.increaseIndex = 0;
     clearInterval(data.intervalID);
   });
 });
