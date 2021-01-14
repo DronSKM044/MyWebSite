@@ -180,7 +180,7 @@ setTimeout(Stars, 6000);
 
 const data = {
   planets: [...document.querySelectorAll(".planet")],
-  alfabet: "abcdefghijklmnopqrstuvwxyz! <>-_ \\/[]{}—=+*^?#________",
+  alfabet: "ABCDEFGHIJKLMNOPQRSTUVWXYZ! <>-_ \\/[]{}—=+*^?#______",
   intervalID: 0,
   arr: [],
   savedText: [],
@@ -196,8 +196,10 @@ function textScrambler(item, index) {
   let compareChar =
     data.alfabet[Math.floor(Math.random() * data.alfabet.length)];
   data.arr.splice(data.increaseIndex, data.increaseIndex, compareChar);
-  if (data.savedText[index][data.increaseIndex].toLowerCase() == compareChar) {
+  if (data.savedText[index][data.increaseIndex] == compareChar) {
     data.increaseIndex++;
+  } else if (data.savedText[index].length == data.increaseIndex) {
+    return;
   }
 
   data.planets[index].innerHTML = data.arr.join("");
