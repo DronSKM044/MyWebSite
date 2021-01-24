@@ -16,7 +16,7 @@
         }
 @keyframes moonMove{
         0%{
-            top:-150px;
+            top:-200px;
         }
         50%{
             top:100px;
@@ -72,7 +72,9 @@
 
 }
         
-       
+  body{
+      overflow: hidden;
+  }     
 .preload{
     position: absolute;
     top: 50%;
@@ -97,7 +99,7 @@
     background-position: bottom;
     transition: .2s ease-in;
     clip-path: circle(120px at 50% 100%);
-    animation: onClip 3s ease-in-out both,onBlur 3s  linear both;
+    /* animation: onClip 3s ease-in-out both,onBlur 3s  linear both; */
     overflow: hidden;
 
 }
@@ -110,7 +112,7 @@
     position: absolute;
     background: url(img/graphic/starry-night.jpg) no-repeat top;
     opacity: 0; 
-    animation: starVisible .5s 3s ease-in-out both; 
+    /* animation: starVisible .5s 3s ease-in-out both;  */
 }
 .onEarth:after {
     content: "";
@@ -121,7 +123,7 @@
     position: absolute;
     background: url(img/graphic/road.png) no-repeat center;
     background-size: contain;
-    animation: roadToDown 1s linear both;
+    /* animation: roadToDown 1s linear both; */
     
 }
 
@@ -135,7 +137,7 @@ position: absolute;
 transform-style: preserve-3d;
 width: 200px;
 height: 200px;
-top:-150px;
+top:-200px;
 left:400px;
 background: url(img/graphic/earth.png) no-repeat center;
 background-size: cover;
@@ -440,7 +442,7 @@ section.about:after{
 .gallery .card{
     position: relative;
     display: flex;
-    width: 26%;
+    width: 50%;
     height: auto;
     margin: 2px 0 2px 0;
     border: 1px solid darkcyan ;
@@ -460,7 +462,7 @@ section.about:after{
     width: 100%;
     height: 100%;
     background: url(img/content/ToDoList.jpg) no-repeat;
-    background-size: contain;
+    background-size: 100% 100%;
 }
 .discribe{
     position: absolute;

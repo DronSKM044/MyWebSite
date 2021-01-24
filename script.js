@@ -1,5 +1,4 @@
 "use strict";
-
 const btn_dropMenu = document.getElementById("btn_dropMenu");
 const navMenu = document.querySelector(".nav_menu");
 btn_dropMenu.addEventListener("click", () => {
@@ -12,17 +11,16 @@ let isNav = true;
 function planetNavigation() {
   const a = [...document.querySelectorAll("a.children")];
 
-  // a.forEach((link) => {
-  //   link.addEventListener("click", (e) => {
-  //     e.preventDefault();
-  //     const href = link.getAttribute("href");
-  //     setTimeout(() => {
-  //       window.location.href =
-  //         "http://127.0.0.1:5500/Projects/MyWebSite/index.html" + href;
-  //     }, 2500);
-  //     return (isNav = false);
-  //   });
-  // });
+  a.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const href = link.getAttribute("href");
+      setTimeout(() => {
+        window.location.href = href;
+      }, 2500);
+      return (isNav = false);
+    });
+  });
 }
 
 let clouds = [];
@@ -181,15 +179,17 @@ setTimeout(Stars, 6000);
 function oldScram() {
   const data = {
     planets: [...document.querySelectorAll(".planet")],
-    alfabet: "ABCDEFGHIJKLMNOPQRSTUVWXYZ! <>-_ \\/[]{}—=+*^?#______",
+    planetsH2: [...document.querySelectorAll(".planet>aside>h2")],
+    alfabet: "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@$&^ <>-_ \\/[]{}—=+*^?#______",
     intervalID: 0,
     arr: [],
     savedText: [],
     increaseIndex: 0,
   };
 
-  data.planets.forEach((planetText) => {
+  data.planetsH2.forEach((planetText) => {
     data.savedText.push(planetText.textContent);
+    console.log(data.savedText);
   });
 
   function textScrambler(item, index) {
@@ -203,33 +203,40 @@ function oldScram() {
       return;
     }
 
-    data.planets[index].innerHTML = data.arr.join("");
+    data.planetsH2[index].innerHTML = data.arr.join("");
   }
 
   data.planets.forEach((item, index) => {
     item.addEventListener("mouseover", (e) => {
+      const h2 = item.querySelector("planet>aside>h2");
       clearInterval(data.intervalID); // wyczyscamy interval przy każdym nasunięcią myszki na obiekt
       data.arr = [];
 
-      data.intervalID = setInterval(() => textScrambler(item, index), 20);
+      data.intervalID = setInterval(() => textScrambler(h2, index), 1);
     });
     item.addEventListener("mouseout", () => {
       //-- wyczyscamy interval przy każdym opuszczeniu myszki z obiektu
-      data.planets[index].innerHTML = data.savedText[index];
+
+      data.planetsH2[index].textContent = data.savedText[index];
       data.increaseIndex = 0;
       clearInterval(data.intervalID);
     });
   });
 }
 
-const planets = [...document.querySelectorAll(".planet")];
-planets.forEach((planet) => {
-  planet.addEventListener("mouseover", () => {
-    const aside = planet.querySelector("aside");
-    aside.classList.add("show");
+function asidePanelAnimation() {
+  const planets = [...document.querySelectorAll(".planet")];
+  planets.forEach((planet) => {
+    const h2 = planet.querySelector("h2");
+    planet.addEventListener("mouseover", () => {
+      const aside = planet.querySelector("aside");
+      aside.classList.add("show");
+    });
+    planet.addEventListener("mouseout", () => {
+      const aside = planet.querySelector("aside");
+      aside.classList.remove("show");
+    });
   });
-  planet.addEventListener("mouseout", () => {
-    const aside = planet.querySelector("aside");
-    aside.classList.remove("show");
-  });
-});
+}
+asidePanelAnimation();
+oldScram();
