@@ -38,6 +38,10 @@
             }
             
         }
+
+
+
+
 @keyframes roadToDown{
     0%{
         bottom: 0px;
@@ -129,8 +133,8 @@ justify-content: center;
 align-items: center;
 position: absolute;
 transform-style: preserve-3d;
-width: 120px;
-height: 120px;
+width: 200px;
+height: 200px;
 top:-150px;
 left:400px;
 background: url(img/graphic/earth.png) no-repeat center;
@@ -139,44 +143,56 @@ animation: moonMove 1s 3s linear both;
 transition:  .1s linear;
 border: 0px solid black;
 border-radius: 50%;
+font-family: 'Orbitron', sans-serif;
+color: #FFFFFF;
 }
-.planet:hover{
-cursor: pointer;
-transform: scale(1.2);
-border: 1px solid darkorange;
+.planet:hover{  
+    cursor: pointer;
+    transform: scale(1.2);
+    border: 1px solid rgb(255, 140, 0);
 }
-.planet a{
+.planet>aside{
+    display:flex;
     position: absolute;
-    top: -10px;
-    
+    visibility: hidden;
+    left: 75%;
+    top:50%;
+    width: 100%;
+    padding: 5%;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    text-align:left;
+    background-color: rgba(100,100,100,.5);
+    border: 1px solid rgba(0,00,00,.8);
+    text-shadow: 0 0 5px rgb(22, 22, 22), 0 0 10px rgb(27, 26, 26), 0 0 15px rgb(51, 50, 50), 0 0 20px #ff9100, 0 0 30px #49FF18, 0 0 40px #fc810f, 0 0 55px #fd7d05, 0 0 75px #ff6d18;
+   
+}
+@keyframes asideMove{
+    0%{
+        left:50%;
+        opacity: 0;
+   
+    }
+    100%{
+        left: 75%;
+        opacity: 1;
+   
+    }
+}
+
+.planet>aside.show{
+    visibility: visible;
+    animation: asideMove 1s ease-in-out ;
 }
 .planet.trans{
     transition:  6s ease-in;
 }
-.planet::before{
-    content: " ";
-    position: absolute;
-    bottom:0;
-    left: 50%;
-    height: 50%;
-    width: 100px;
-    transform: rotateX(180deg);
-    background-color: tomato;
-}
-.planet::after{
-    content: " ";
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    height: 1px;
-    width: 100px;
-    background-color: greenyellow;
-}
+
 
 .planet.moon{
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     left:80%;
     animation-delay: 3.5s;
     background: url(img/graphic/moon.png) no-repeat center;
@@ -185,16 +201,16 @@ border: 1px solid darkorange;
     transform: scaleX(1);
 } 
 .planet.mars{
-    width: 50px;
-    height: 50px;
+    width: 120px;
+    height: 120px;
     left:50%;
     animation-delay: 4s;
     background: url(img/graphic/mars1.png) no-repeat center;
     background-size: cover;
 } 
 .planet.saturn{
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
     left:10%;
     animation-delay: 5s;
 } 

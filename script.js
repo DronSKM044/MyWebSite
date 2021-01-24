@@ -12,17 +12,17 @@ let isNav = true;
 function planetNavigation() {
   const a = [...document.querySelectorAll("a.children")];
 
-  a.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      const href = link.getAttribute("href");
-      setTimeout(() => {
-        window.location.href =
-          "http://127.0.0.1:5500/Projects/MyWebSite/index.html" + href;
-      }, 2500);
-      return (isNav = false);
-    });
-  });
+  // a.forEach((link) => {
+  //   link.addEventListener("click", (e) => {
+  //     e.preventDefault();
+  //     const href = link.getAttribute("href");
+  //     setTimeout(() => {
+  //       window.location.href =
+  //         "http://127.0.0.1:5500/Projects/MyWebSite/index.html" + href;
+  //     }, 2500);
+  //     return (isNav = false);
+  //   });
+  // });
 }
 
 let clouds = [];
@@ -178,44 +178,58 @@ setTimeout(Stars, 6000);
   });
 })();
 
-const data = {
-  planets: [...document.querySelectorAll(".planet")],
-  alfabet: "ABCDEFGHIJKLMNOPQRSTUVWXYZ! <>-_ \\/[]{}—=+*^?#______",
-  intervalID: 0,
-  arr: [],
-  savedText: [],
-  increaseIndex: 0,
-};
+function oldScram() {
+  const data = {
+    planets: [...document.querySelectorAll(".planet")],
+    alfabet: "ABCDEFGHIJKLMNOPQRSTUVWXYZ! <>-_ \\/[]{}—=+*^?#______",
+    intervalID: 0,
+    arr: [],
+    savedText: [],
+    increaseIndex: 0,
+  };
 
-data.planets.forEach((planetText) => {
-  data.savedText.push(planetText.textContent);
-});
+  data.planets.forEach((planetText) => {
+    data.savedText.push(planetText.textContent);
+  });
 
-function textScrambler(item, index) {
-  // realizovać logikę zmiany liter dla tej funkcji i w prszypadku opuszczenia obiektu myszką zamienić na odpowidnie słowa
-  let compareChar =
-    data.alfabet[Math.floor(Math.random() * data.alfabet.length)];
-  data.arr.splice(data.increaseIndex, data.increaseIndex, compareChar);
-  if (data.savedText[index][data.increaseIndex] == compareChar) {
-    data.increaseIndex++;
-  } else if (data.savedText[index].length == data.increaseIndex) {
-    return;
+  function textScrambler(item, index) {
+    // realizovać logikę zmiany liter dla tej funkcji i w prszypadku opuszczenia obiektu myszką zamienić na odpowidnie słowa
+    let compareChar =
+      data.alfabet[Math.floor(Math.random() * data.alfabet.length)];
+    data.arr.splice(data.increaseIndex, data.increaseIndex, compareChar);
+    if (data.savedText[index][data.increaseIndex] == compareChar) {
+      data.increaseIndex++;
+    } else if (data.savedText[index].length == data.increaseIndex) {
+      return;
+    }
+
+    data.planets[index].innerHTML = data.arr.join("");
   }
 
-  data.planets[index].innerHTML = data.arr.join("");
+  data.planets.forEach((item, index) => {
+    item.addEventListener("mouseover", (e) => {
+      clearInterval(data.intervalID); // wyczyscamy interval przy każdym nasunięcią myszki na obiekt
+      data.arr = [];
+
+      data.intervalID = setInterval(() => textScrambler(item, index), 20);
+    });
+    item.addEventListener("mouseout", () => {
+      //-- wyczyscamy interval przy każdym opuszczeniu myszki z obiektu
+      data.planets[index].innerHTML = data.savedText[index];
+      data.increaseIndex = 0;
+      clearInterval(data.intervalID);
+    });
+  });
 }
 
-data.planets.forEach((item, index) => {
-  item.addEventListener("mouseover", (e) => {
-    clearInterval(data.intervalID); // wyczyscamy interval przy każdym nasunięcią myszki na obiekt
-    data.arr = [];
-
-    data.intervalID = setInterval(() => textScrambler(item, index), 20);
+const planets = [...document.querySelectorAll(".planet")];
+planets.forEach((planet) => {
+  planet.addEventListener("mouseover", () => {
+    const aside = planet.querySelector("aside");
+    aside.classList.add("show");
   });
-  item.addEventListener("mouseout", () => {
-    //-- wyczyscamy interval przy każdym opuszczeniu myszki z obiektu
-    data.planets[index].innerHTML = data.savedText[index];
-    data.increaseIndex = 0;
-    clearInterval(data.intervalID);
+  planet.addEventListener("mouseout", () => {
+    const aside = planet.querySelector("aside");
+    aside.classList.remove("show");
   });
 });
