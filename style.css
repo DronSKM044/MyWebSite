@@ -83,7 +83,11 @@
     font-size: 5em;
     transform: translate(-50%, -50%);
 }
+.preload p{
+    text-shadow: 2px 2px 2px #CE826E;
 
+
+}
 
 
 .onEarth {
@@ -99,7 +103,7 @@
     background-position: bottom;
     transition: .2s ease-in;
     clip-path: circle(120px at 50% 100%);
-    /* animation: onClip 3s ease-in-out both,onBlur 3s  linear both; */
+    animation: onClip 3s ease-in-out both,onBlur 3s  linear both;
     overflow: hidden;
 
 }
@@ -112,7 +116,7 @@
     position: absolute;
     background: url(img/graphic/starry-night.jpg) no-repeat top;
     opacity: 0; 
-    /* animation: starVisible .5s 3s ease-in-out both;  */
+    animation: starVisible .5s 3s ease-in-out both; 
 }
 .onEarth:after {
     content: "";
@@ -123,10 +127,12 @@
     position: absolute;
     background: url(img/graphic/road.png) no-repeat center;
     background-size: contain;
-    /* animation: roadToDown 1s linear both; */
+    animation: roadToDown 1s linear both;
     
 }
-
+.onEarth>#canvas{
+    opacity: 0.5;
+}
 
 .planet {
 /* content: ""; */
