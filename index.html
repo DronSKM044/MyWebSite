@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
     <title>My_We_bSite</title>
   </head>
   <body>
@@ -11,12 +12,22 @@
     <section class="loading">
       <h1 class="loading__title">You are ready go with me to the star?</h1>
       <div class="loading__buttons">
-        <button clas="loading__accepted">Yes</button>
-        <button clas="loading__decline">No</button>
+        <button clas="loading__accepted" value="yes">Yes</button>
+        <button clas="loading__decline" value="no">No</button>
       </div>
     </section>
-    <section class="main">
-      <nav class="main__planets">
+    <header class="header">
+      <nav class="header__menu">
+        <ul class="menu__list">
+          <li class="menu__item--active">About Me</li>
+          <li class="menu__item">Testimonial</li>
+          <li class="menu__item">Work</li>
+          <li class="menu__item">Contact</li>
+        </ul>
+      </nav>
+    </header>
+    <main class="main">
+      <div class="main__planets">
         <div class="planets__earth">
           <h2 class="title earth__title">Earth</h2>
           <p>
@@ -38,9 +49,10 @@
             dolore alias facere dolor.
           </p>
         </div>
-      </nav>
-    </section>
+      </div>
+    </main>
     <section class="gallery"></section>
     <footer class="footer"></footer>
+    <script src="/script.js"></script>
   </body>
 </html>
