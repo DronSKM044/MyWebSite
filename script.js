@@ -9,7 +9,7 @@ let particlearray = [];
 const mouse = {
   x: null,
   y: null,
-  radius: 100,
+  radius: 50,
 };
 
 window.addEventListener("mousemove", function (e) {
@@ -28,16 +28,18 @@ ctx.fillText("Web Developer", 40, 80);
 const textCoordinates = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
 class Particle {
-  constructor(x, y) {
+  constructor(x, y, color) {
     this.x = x;
     this.y = y;
+    this.color = color;
     this.size = 1;
     this.baseX = this.x;
     this.baseY = this.y;
     this.density = Math.random() * 40 + 5;
   }
   draw() {
-    ctx.fillStyle = "#F23827";
+    ctx.fillStyle = this.color;
+    // "#F23827"
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.closePath();
@@ -84,7 +86,8 @@ function init() {
   }
 }
 init();
-console.log(particlearray);
+canvas.addEventListener("click", blow);
+
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   for (let i = 0; i < particlearray.length; i++) {
@@ -115,4 +118,15 @@ function connect() {
       }
     }
   }
+}
+function blow() {
+  let increaseRadius = mouse.radius;
+  increaseRadius = increaseRadius + 2;
+  mouse.radius = increaseRadius;
+  if (mouse.radius >= 200) {
+    mouse.radius = 25;
+    console.log(increaseRadius);
+    return;
+  }
+  setTimeout(blow);
 }
