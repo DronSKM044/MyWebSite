@@ -2,6 +2,7 @@ let canvas = document.querySelector(".canvas");
 let ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+let isBlow = false;
 let particlearray = [];
 
 // handle mouse
@@ -59,6 +60,7 @@ class Particle {
       this.x -= directionX;
       this.y -= directionY;
     } else {
+      if (isBlow) return;
       if (this.x !== this.baseX) {
         let dx = this.x - this.baseX;
         this.x -= dx / 5;
@@ -86,7 +88,10 @@ function init() {
   }
 }
 init();
-canvas.addEventListener("click", blow);
+canvas.addEventListener("click", function () {
+  blow();
+  isBlow = !isBlow;
+});
 
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -125,6 +130,7 @@ function blow() {
   mouse.radius = increaseRadius;
   if (mouse.radius >= 200) {
     mouse.radius = 25;
+    isBlow = true;
     console.log(increaseRadius);
     return;
   }
